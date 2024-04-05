@@ -2,8 +2,19 @@ import NavBar from './components/NavBar'
 import Menu from './components/Menu'
 import Cart from './components/Cart'
 import FoodsCategory from './components/FoodsCategory'
-
+import { useBearStore } from './store/bearStore'
 import './App.scss'
+
+function BearCounter() {
+  const bears = useBearStore((state) => state.bears)
+  return <h1>{bears} around here ...</h1>
+}
+function Controls() {
+  const increasePopulation = useBearStore((state) => state.increasePopulation)
+  return <button onClick={increasePopulation}>one up</button>
+}
+
+
 
 const foodsList = [
   {
@@ -68,7 +79,8 @@ const App = () => {
     <div className="home">
       {/* 导航 */}
       <NavBar />
-
+      <BearCounter></BearCounter>
+      <Controls></Controls>
       {/* 内容 */}
       <div className="content-wrap">
         <div className="content">
