@@ -23,11 +23,26 @@ const takeawaySlice = createSlice({
       } else {
         state.cartList.push({ ...food, count: 1 });
       }
+    },
+    increseCount(state, action) {
+      const item = state.cartList.find((item) => item.id === action.payload.id)
+      item.count++
+    },
+    decreseCount(state, action) {
+      const item = state.cartList.find((item) => item.id === action.payload.id)
+      if (item.count > 1) {
+        item.count--
+      } else {
+        state.cartList = state.cartList.filter((item) => item.id !== action.payload.id)
+      }
+    },
+    clearCart(state) {
+      state.cartList = []
     }
   },
 });
 
-export const { setFoodList, changeActiveIndex, addCart } = takeawaySlice.actions;
+export const { setFoodList, changeActiveIndex, addCart, increseCount, decreseCount, clearCart } = takeawaySlice.actions;
 
 export const fetchFoodList = () => {
   return async (dispatch) => {
