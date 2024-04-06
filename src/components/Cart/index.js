@@ -15,7 +15,8 @@ const Cart = () => {
     <div className="cartContainer" >
       {/* 遮罩层 添加visible类名可以显示出来 */}
       <div
-        className={classNames('cartOverlay')}
+        className={classNames('cartOverlay', showCart&&'visible')}
+        onClick={()=>setShowCart(false)}
       />
       <div className="cart">
         {/* fill 添加fill类名可以切换购物车状态*/}
